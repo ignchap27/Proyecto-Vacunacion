@@ -586,19 +586,49 @@
 			"type": "ApplyMapping",
 			"mapping": [
 				{
-					"toKey": "ano",
+					"toKey": "right_municipio",
 					"fromPath": [
-						"ano"
+						"right_municipio"
 					],
-					"toType": "int",
-					"fromType": "int",
-					"dropped": false,
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "right_departamento",
+					"fromPath": [
+						"right_departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
 					"children": null
 				},
 				{
 					"toKey": "codigo",
 					"fromPath": [
 						"codigo"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_dosis aplicadas",
+					"fromPath": [
+						"right_dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
 					],
 					"toType": "float",
 					"fromType": "float",
@@ -616,22 +646,22 @@
 					"children": null
 				},
 				{
-					"toKey": "meta",
+					"toKey": "right_ano",
 					"fromPath": [
-						"meta"
+						"right_ano"
 					],
-					"toType": "float",
-					"fromType": "float",
-					"dropped": false,
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
 					"children": null
 				},
 				{
-					"toKey": "dosis aplicadas",
+					"toKey": "ano",
 					"fromPath": [
-						"dosis aplicadas"
+						"ano"
 					],
-					"toType": "float",
-					"fromType": "float",
+					"toType": "int",
+					"fromType": "int",
 					"dropped": false,
 					"children": null
 				},
@@ -646,29 +676,9 @@
 					"children": null
 				},
 				{
-					"toKey": ".ano",
+					"toKey": "dosis aplicadas",
 					"fromPath": [
-						".ano"
-					],
-					"toType": "int",
-					"fromType": "int",
-					"dropped": true,
-					"children": null
-				},
-				{
-					"toKey": ".departamento",
-					"fromPath": [
-						".departamento"
-					],
-					"toType": "string",
-					"fromType": "string",
-					"dropped": true,
-					"children": null
-				},
-				{
-					"toKey": "codigo municipio",
-					"fromPath": [
-						"codigo municipio"
+						"dosis aplicadas"
 					],
 					"toType": "float",
 					"fromType": "float",
@@ -676,19 +686,9 @@
 					"children": null
 				},
 				{
-					"toKey": "municipio",
+					"toKey": "right_codigo municipio",
 					"fromPath": [
-						"municipio"
-					],
-					"toType": "string",
-					"fromType": "string",
-					"dropped": false,
-					"children": null
-				},
-				{
-					"toKey": ".meta",
-					"fromPath": [
-						".meta"
+						"right_codigo municipio"
 					],
 					"toType": "float",
 					"fromType": "float",
@@ -696,9 +696,9 @@
 					"children": null
 				},
 				{
-					"toKey": ".dosis aplicadas",
+					"toKey": "right_meta",
 					"fromPath": [
-						".dosis aplicadas"
+						"right_meta"
 					],
 					"toType": "float",
 					"fromType": "float",
@@ -706,9 +706,9 @@
 					"children": null
 				},
 				{
-					"toKey": ".cobertura",
+					"toKey": "right_cobertura",
 					"fromPath": [
-						".cobertura"
+						"right_cobertura"
 					],
 					"toType": "double",
 					"fromType": "double",
@@ -832,7 +832,7 @@
 			"previewAmount": 0,
 			"inputs": [
 				"node-1747073398597",
-				"node-1747073424483"
+				"node-1747091007843"
 			],
 			"name": "Join",
 			"generatedNodeName": "Join_node1747074242050",
@@ -847,9 +847,9 @@
 					]
 				},
 				{
-					"from": "node-1747073424483",
+					"from": "node-1747091007843",
 					"keys": [
-						"departamento"
+						"right_departamento"
 					]
 				}
 			],
@@ -1541,6 +1541,93 @@
 			"calculatedType": "",
 			"codeGenVersion": 2
 		},
+		"node-1747091007843": {
+			"nodeId": "node-1747091007843",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747073424483"
+			],
+			"name": "Renamed keys for Join",
+			"generatedNodeName": "RenamedkeysforJoin_node1747091007843",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "right_ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
 		"node-1747019960175": {
 			"nodeId": "node-1747019960175",
 			"dataPreview": false,
@@ -1645,32 +1732,12 @@
 			"type": "ApplyMapping",
 			"mapping": [
 				{
-					"toKey": "ano",
-					"fromPath": [
-						"ano"
-					],
-					"toType": "int",
-					"fromType": "int",
-					"dropped": true,
-					"children": null
-				},
-				{
 					"toKey": "codigo",
 					"fromPath": [
 						"codigo"
 					],
 					"toType": "float",
 					"fromType": "float",
-					"dropped": true,
-					"children": null
-				},
-				{
-					"toKey": "departamento",
-					"fromPath": [
-						"departamento"
-					],
-					"toType": "string",
-					"fromType": "string",
 					"dropped": true,
 					"children": null
 				},
@@ -1685,13 +1752,23 @@
 					"children": null
 				},
 				{
-					"toKey": "dosis_aplicadas",
+					"toKey": "departamento",
 					"fromPath": [
-						"dosis aplicadas"
+						"departamento"
 					],
-					"toType": "float",
-					"fromType": "float",
-					"dropped": false,
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
 					"children": null
 				},
 				{
@@ -1705,23 +1782,13 @@
 					"children": null
 				},
 				{
-					"toKey": "codigo municipio",
+					"toKey": "dosis_aplicadas",
 					"fromPath": [
-						"codigo municipio"
+						"dosis aplicadas"
 					],
 					"toType": "float",
 					"fromType": "float",
-					"dropped": true,
-					"children": null
-				},
-				{
-					"toKey": "municipio",
-					"fromPath": [
-						"municipio"
-					],
-					"toType": "string",
-					"fromType": "string",
-					"dropped": true,
+					"dropped": false,
 					"children": null
 				},
 				{
@@ -1755,9 +1822,9 @@
 					"children": null
 				},
 				{
-					"toKey": ".codigo municipio",
+					"toKey": "codigo municipio",
 					"fromPath": [
-						".codigo municipio"
+						"codigo municipio"
 					],
 					"toType": "float",
 					"fromType": "float",
@@ -1765,9 +1832,9 @@
 					"children": null
 				},
 				{
-					"toKey": ".municipio",
+					"toKey": "municipio",
 					"fromPath": [
-						".municipio"
+						"municipio"
 					],
 					"toType": "string",
 					"fromType": "string",
@@ -1803,10 +1870,7 @@
 			"type": "Union",
 			"parentsValid": true,
 			"calculatedType": "",
-			"sources": [
-				"node-1747015038891",
-				"node-1747080901994"
-			],
+			"sources": [],
 			"unionType": "ALL",
 			"codeGenVersion": 2
 		},
@@ -2224,6 +2288,15 @@
 					"fromType": "string",
 					"dropped": false,
 					"children": null
+				},
+				{
+					"toKey": ".departamento",
+					"fromPath": [
+						".departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false
 				}
 			],
 			"parentsValid": true,
@@ -2294,7 +2367,7 @@
 			"generatedNodeName": "Joindepartamentos_node1747073759905",
 			"classification": "Transform",
 			"type": "Join",
-			"joinType": "outer",
+			"joinType": "equijoin",
 			"columns": [
 				{
 					"from": "node-1747017687038",
@@ -2363,14 +2436,14 @@
 						"description": "REAL"
 					},
 					{
-						"value": "dosis_aplicadas",
-						"label": "dosis_aplicadas",
-						"description": "REAL"
-					},
-					{
 						"value": "cobertura",
 						"label": "cobertura",
 						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "dosis_aplicadas",
+						"label": "dosis_aplicadas",
+						"description": "REAL"
 					},
 					{
 						"value": "aniouuid",
