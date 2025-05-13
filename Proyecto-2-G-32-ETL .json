@@ -1,0 +1,2627 @@
+{
+	"jobConfig": {
+		"name": "Proyecto-2-G-32 ",
+		"description": "",
+		"role": "arn:aws:iam::730335590590:role/LabRole",
+		"command": "glueetl",
+		"version": "5.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 0,
+		"timeout": 480,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "Proyecto-2-G-32 .py",
+		"scriptLocation": "s3://aws-glue-assets-730335590590-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2025-05-12T01:34:33.997Z",
+		"developerMode": false,
+		"connectionsList": [
+			"Redshift connection"
+		],
+		"temporaryDirectory": "s3://aws-glue-assets-730335590590-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"pythonPath": "s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_common.py,s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_uuid.py",
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-730335590590-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1747013749720": {
+			"nodeId": "node-1747013749720",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Vacunacion Departamental",
+			"generatedNodeName": "VacunacionDepartamental_node1747013749720",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": false,
+			"format": "csv",
+			"paths": [
+				"s3://uniandes-bi-proy-g-32-202510-source/vacunacion_departamental_2009_2010.csv"
+			],
+			"compressionType": null,
+			"exclusions": [],
+			"groupFiles": null,
+			"groupSize": null,
+			"recurse": true,
+			"maxBand": null,
+			"maxFilesInBand": null,
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"enableSamplePath": false,
+				"samplePath": "s3://uniandes-bi-proy-g-32-202510-source/vacunacion_departamental_2009_2010.csv",
+				"boundedOption": null
+			},
+			"separator": ",",
+			"escaper": "",
+			"quoteChar": "\"",
+			"multiline": null,
+			"withHeader": true,
+			"writeHeader": null,
+			"skipFirst": null,
+			"optimizePerformance": false,
+			"outputSchemas": [
+				[
+					{
+						"key": "ano",
+						"fullPath": [
+							"ano"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "codigo",
+						"fullPath": [
+							"codigo"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "departamento",
+						"fullPath": [
+							"departamento"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "meta",
+						"fullPath": [
+							"meta"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "dosis aplicadas",
+						"fullPath": [
+							"dosis aplicadas"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "cobertura",
+						"fullPath": [
+							"cobertura"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747075178076": {
+			"nodeId": "node-1747075178076",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747081540861"
+			],
+			"name": "Amazon Redshift Ubicacion",
+			"generatedNodeName": "AmazonRedshiftUbicacion_node1747075178076",
+			"classification": "DataSink",
+			"type": "AmazonRedshift",
+			"streamingBatchInterval": 100,
+			"data": {
+				"accessType": "connection",
+				"sourceType": "table",
+				"connection": {
+					"value": "Redshift connection",
+					"label": "Redshift connection",
+					"description": "No description available. Version: 2"
+				},
+				"schema": {
+					"value": "public",
+					"label": "public",
+					"description": null
+				},
+				"catalogDatabase": null,
+				"catalogRedshiftTable": null,
+				"catalogRedshiftSchema": null,
+				"table": {
+					"value": "dim_ubicacion",
+					"label": "dim_ubicacion",
+					"description": null
+				},
+				"catalogTable": null,
+				"tempDir": "s3://aws-glue-assets-730335590590-us-east-1/temporary/",
+				"iamRole": null,
+				"sampleQuery": null,
+				"preAction": null,
+				"postAction": null,
+				"action": "drop",
+				"tableSchema": [
+					{
+						"value": "departamento",
+						"label": "departamento",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "codigo_municipio",
+						"label": "codigo_municipio",
+						"description": "REAL"
+					},
+					{
+						"value": "municipio",
+						"label": "municipio",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "departamentouuid",
+						"label": "departamentouuid",
+						"description": "VARCHAR"
+					}
+				],
+				"selectedColumns": [],
+				"crawlerConnection": null,
+				"tablePrefix": null,
+				"upsert": false,
+				"mergeAction": "simple",
+				"mergeWhenMatched": "update",
+				"mergeWhenNotMatched": "insert",
+				"mergeClause": null,
+				"stagingTable": "public.dim_ubicacion_temp_bk5okx",
+				"advancedOptions": []
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747017734870": {
+			"nodeId": "node-1747017734870",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013749720"
+			],
+			"name": "Ubicacion Departamentos",
+			"generatedNodeName": "UbicacionDepartamentos_node1747017734870",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "codigo",
+					"fromPath": [
+						"codigo"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747072053491": {
+			"nodeId": "node-1747072053491",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747071928049",
+				"node-1747017444093"
+			],
+			"name": "Join Indicadores y Año",
+			"generatedNodeName": "JoinIndicadoresyAo_node1747072053491",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "equijoin",
+			"columns": [
+				{
+					"from": "node-1747071928049",
+					"keys": [
+						"ano"
+					]
+				},
+				{
+					"from": "node-1747017444093",
+					"keys": [
+						"anio"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747074546957": {
+			"nodeId": "node-1747074546957",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747074504495",
+				"node-1747019960175"
+			],
+			"name": "Join Vacunacion y Departamento",
+			"generatedNodeName": "JoinVacunacionyDepartamento_node1747074546957",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "equijoin",
+			"columns": [
+				{
+					"from": "node-1747074504495",
+					"keys": [
+						"departamento"
+					]
+				},
+				{
+					"from": "node-1747019960175",
+					"keys": [
+						"departamento"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747021498097": {
+			"nodeId": "node-1747021498097",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013522012"
+			],
+			"name": "Indicadores",
+			"generatedNodeName": "Indicadores_node1747021498097",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_pobreza",
+					"fromPath": [
+						"ipm_pobreza"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_salud",
+					"fromPath": [
+						"ipm_sin_salud"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_acceso_salud",
+					"fromPath": [
+						"ipm_sin_acceso_salud"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "nivel_sisben",
+					"fromPath": [
+						"nivel_sisben"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "proporcion_rural",
+					"fromPath": [
+						"proporcion_rural"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "educación_neta_total",
+					"fromPath": [
+						"educación_neta_total"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ingresos totales",
+					"fromPath": [
+						"ingresos totales"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "pcte_poblacion_rural",
+					"fromPath": [
+						"pcte_poblacion_rural"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747073398597": {
+			"nodeId": "node-1747073398597",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013749720"
+			],
+			"name": "Vacunacion Departamentos",
+			"generatedNodeName": "VacunacionDepartamentos_node1747073398597",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo",
+					"fromPath": [
+						"codigo"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747074412471": {
+			"nodeId": "node-1747074412471",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747074242050"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1747074412471",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo",
+					"fromPath": [
+						"codigo"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": ".ano",
+					"fromPath": [
+						".ano"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".departamento",
+					"fromPath": [
+						".departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": ".meta",
+					"fromPath": [
+						".meta"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".dosis aplicadas",
+					"fromPath": [
+						".dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".cobertura",
+					"fromPath": [
+						".cobertura"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747013797163": {
+			"nodeId": "node-1747013797163",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Vacunacion Municipal",
+			"generatedNodeName": "VacunacionMunicipal_node1747013797163",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": false,
+			"format": "csv",
+			"paths": [
+				"s3://uniandes-bi-proy-g-32-202510-source/vacunacion_municipal.csv"
+			],
+			"compressionType": null,
+			"exclusions": [],
+			"groupFiles": null,
+			"groupSize": null,
+			"recurse": true,
+			"maxBand": null,
+			"maxFilesInBand": null,
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"enableSamplePath": false,
+				"samplePath": "s3://uniandes-bi-proy-g-32-202510-source/vacunacion_municipal.csv",
+				"boundedOption": null
+			},
+			"separator": ",",
+			"escaper": "",
+			"quoteChar": "\"",
+			"multiline": null,
+			"withHeader": true,
+			"writeHeader": null,
+			"skipFirst": null,
+			"optimizePerformance": false,
+			"outputSchemas": [
+				[
+					{
+						"key": "ano",
+						"fullPath": [
+							"ano"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "departamento",
+						"fullPath": [
+							"departamento"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "codigo municipio",
+						"fullPath": [
+							"codigo municipio"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "municipio",
+						"fullPath": [
+							"municipio"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "meta",
+						"fullPath": [
+							"meta"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "dosis aplicadas",
+						"fullPath": [
+							"dosis aplicadas"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "cobertura",
+						"fullPath": [
+							"cobertura"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747074242050": {
+			"nodeId": "node-1747074242050",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747073398597",
+				"node-1747073424483"
+			],
+			"name": "Join",
+			"generatedNodeName": "Join_node1747074242050",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "equijoin",
+			"columns": [
+				{
+					"from": "node-1747073398597",
+					"keys": [
+						"departamento"
+					]
+				},
+				{
+					"from": "node-1747073424483",
+					"keys": [
+						"departamento"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747017687038": {
+			"nodeId": "node-1747017687038",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013797163"
+			],
+			"name": "Ubicacion",
+			"generatedNodeName": "Ubicacion_node1747017687038",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747081540861": {
+			"nodeId": "node-1747081540861",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747019960175"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1747081540861",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo_municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamentouuid",
+					"fromPath": [
+						"departamentouuid"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747014710230": {
+			"nodeId": "node-1747014710230",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013749720"
+			],
+			"name": "Años",
+			"generatedNodeName": "Aos_node1747014710230",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "anio",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo",
+					"fromPath": [
+						"codigo"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747013522012": {
+			"nodeId": "node-1747013522012",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Indicadores Vacunacion Municipal",
+			"generatedNodeName": "IndicadoresVacunacionMunicipal_node1747013522012",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": false,
+			"format": "csv",
+			"paths": [
+				"s3://uniandes-bi-proy-g-32-202510-source/indicadores_vacunacion_municipal.csv"
+			],
+			"compressionType": null,
+			"exclusions": [],
+			"groupFiles": null,
+			"groupSize": null,
+			"recurse": true,
+			"maxBand": null,
+			"maxFilesInBand": null,
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"enableSamplePath": false,
+				"samplePath": "s3://uniandes-bi-proy-g-32-202510-source/indicadores_vacunacion_municipal.csv",
+				"boundedOption": null
+			},
+			"separator": ",",
+			"escaper": "",
+			"quoteChar": "\"",
+			"multiline": null,
+			"withHeader": true,
+			"writeHeader": null,
+			"skipFirst": null,
+			"optimizePerformance": false,
+			"outputSchemas": [
+				[
+					{
+						"key": "ano",
+						"fullPath": [
+							"ano"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "departamento",
+						"fullPath": [
+							"departamento"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "codigo municipio",
+						"fullPath": [
+							"codigo municipio"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "municipio",
+						"fullPath": [
+							"municipio"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "ipm_pobreza",
+						"fullPath": [
+							"ipm_pobreza"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "ipm_sin_salud",
+						"fullPath": [
+							"ipm_sin_salud"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "ipm_sin_acceso_salud",
+						"fullPath": [
+							"ipm_sin_acceso_salud"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "nivel_sisben",
+						"fullPath": [
+							"nivel_sisben"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "proporcion_rural",
+						"fullPath": [
+							"proporcion_rural"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "educación_neta_total",
+						"fullPath": [
+							"educación_neta_total"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "ingresos totales",
+						"fullPath": [
+							"ingresos totales"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "pcte_poblacion_rural",
+						"fullPath": [
+							"pcte_poblacion_rural"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747075249046": {
+			"nodeId": "node-1747075249046",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747017444093"
+			],
+			"name": "Amazon Redshift Fecha",
+			"generatedNodeName": "AmazonRedshiftFecha_node1747075249046",
+			"classification": "DataSink",
+			"type": "AmazonRedshift",
+			"streamingBatchInterval": 100,
+			"data": {
+				"accessType": "connection",
+				"sourceType": "table",
+				"connection": {
+					"value": "Redshift connection",
+					"label": "Redshift connection",
+					"description": "No description available. Version: 2"
+				},
+				"schema": {
+					"value": "public",
+					"label": "public",
+					"description": null
+				},
+				"catalogDatabase": null,
+				"catalogRedshiftTable": null,
+				"catalogRedshiftSchema": null,
+				"table": {
+					"value": "dim_fecha",
+					"label": "dim_fecha",
+					"description": null
+				},
+				"catalogTable": null,
+				"tempDir": "s3://aws-glue-assets-730335590590-us-east-1/temporary/",
+				"iamRole": null,
+				"sampleQuery": null,
+				"preAction": null,
+				"postAction": null,
+				"action": "drop",
+				"tableSchema": [
+					{
+						"value": "anio",
+						"label": "anio",
+						"description": "INTEGER"
+					},
+					{
+						"value": "aniouuid",
+						"label": "aniouuid",
+						"description": "VARCHAR"
+					}
+				],
+				"selectedColumns": [],
+				"crawlerConnection": null,
+				"tablePrefix": null,
+				"upsert": false,
+				"mergeAction": "simple",
+				"mergeWhenMatched": "update",
+				"mergeWhenNotMatched": "insert",
+				"mergeClause": null,
+				"stagingTable": "public.dim_fecha_temp_nqaedk",
+				"advancedOptions": []
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747015038891": {
+			"nodeId": "node-1747015038891",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013522012"
+			],
+			"name": "Ubicacion",
+			"generatedNodeName": "Ubicacion_node1747015038891",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_pobreza",
+					"fromPath": [
+						"ipm_pobreza"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_salud",
+					"fromPath": [
+						"ipm_sin_salud"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_acceso_salud",
+					"fromPath": [
+						"ipm_sin_acceso_salud"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "nivel_sisben",
+					"fromPath": [
+						"nivel_sisben"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "proporcion_rural",
+					"fromPath": [
+						"proporcion_rural"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "educación_neta_total",
+					"fromPath": [
+						"educación_neta_total"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ingresos totales",
+					"fromPath": [
+						"ingresos totales"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "pcte_poblacion_rural",
+					"fromPath": [
+						"pcte_poblacion_rural"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747075352023": {
+			"nodeId": "node-1747075352023",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747072187368"
+			],
+			"name": "Amazon Redshift Socioeconomico",
+			"generatedNodeName": "AmazonRedshiftSocioeconomico_node1747075352023",
+			"classification": "DataSink",
+			"type": "AmazonRedshift",
+			"streamingBatchInterval": 100,
+			"data": {
+				"accessType": "connection",
+				"sourceType": "table",
+				"connection": {
+					"value": "Redshift connection",
+					"label": "Redshift connection",
+					"description": "No description available. Version: 2"
+				},
+				"schema": {
+					"value": "public",
+					"label": "public",
+					"description": null
+				},
+				"catalogDatabase": null,
+				"catalogRedshiftTable": null,
+				"catalogRedshiftSchema": null,
+				"table": {
+					"value": "hecho_contexto_socioeconomico",
+					"label": "hecho_contexto_socioeconomico",
+					"description": null
+				},
+				"catalogTable": null,
+				"tempDir": "s3://aws-glue-assets-730335590590-us-east-1/temporary/",
+				"iamRole": null,
+				"sampleQuery": null,
+				"preAction": null,
+				"postAction": null,
+				"action": "drop",
+				"tableSchema": [
+					{
+						"value": "departamentouuid",
+						"label": "departamentouuid",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "pcte_poblacion_rural",
+						"label": "pcte_poblacion_rural",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "educación_neta_total",
+						"label": "educación_neta_total",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "proporcion_rural",
+						"label": "proporcion_rural",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "ipm_sin_salud",
+						"label": "ipm_sin_salud",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "ipm_pobreza",
+						"label": "ipm_pobreza",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "ingresos_totales",
+						"label": "ingresos_totales",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "nivel_sisben",
+						"label": "nivel_sisben",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "ipm_sin_acceso_salud",
+						"label": "ipm_sin_acceso_salud",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "aniouuid",
+						"label": "aniouuid",
+						"description": "VARCHAR"
+					}
+				],
+				"selectedColumns": [],
+				"crawlerConnection": null,
+				"tablePrefix": null,
+				"upsert": false,
+				"mergeAction": "simple",
+				"mergeWhenMatched": "update",
+				"mergeWhenNotMatched": "insert",
+				"mergeClause": null,
+				"stagingTable": "public.hecho_contexto_socioeconomico_temp_zh27w8",
+				"advancedOptions": []
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747019960175": {
+			"nodeId": "node-1747019960175",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747019772749"
+			],
+			"name": "DepartamentoUUID",
+			"generatedNodeName": "DepartamentoUUID_node1747019960175",
+			"classification": "Transform",
+			"type": "DynamicTransform",
+			"parameters": [
+				{
+					"name": "colName",
+					"value": [
+						"ubicacionuuid"
+					],
+					"isOptional": true,
+					"type": "str",
+					"listType": null
+				}
+			],
+			"functionName": "gs_uuid",
+			"path": "s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_uuid.py",
+			"version": "1.0.0",
+			"transformName": "gs_uuid",
+			"outputSchemas": [
+				[
+					{
+						"key": "departamento",
+						"fullPath": [
+							"departamento"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "codigo municipio",
+						"fullPath": [
+							"codigo municipio"
+						],
+						"type": "float",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "municipio",
+						"fullPath": [
+							"municipio"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "departamentouuid",
+						"fullPath": [
+							"departamentouuid"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747015884728": {
+			"nodeId": "node-1747015884728",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747015846927",
+				"node-1747014729969"
+			],
+			"name": "Union Años",
+			"generatedNodeName": "UnionAos_node1747015884728",
+			"classification": "Transform",
+			"type": "Union",
+			"parentsValid": true,
+			"calculatedType": "",
+			"sources": [
+				"node-1747015846927",
+				"node-1747014729969"
+			],
+			"unionType": "ALL",
+			"codeGenVersion": 2
+		},
+		"node-1747074585299": {
+			"nodeId": "node-1747074585299",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747074546957"
+			],
+			"name": "Change Schema",
+			"generatedNodeName": "ChangeSchema_node1747074585299",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "codigo",
+					"fromPath": [
+						"codigo"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "dosis_aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "anio",
+					"fromPath": [
+						"anio"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "aniouuid",
+					"fromPath": [
+						"aniouuid"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": ".departamento",
+					"fromPath": [
+						".departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".codigo municipio",
+					"fromPath": [
+						".codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".municipio",
+					"fromPath": [
+						".municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "departamentouuid",
+					"fromPath": [
+						"departamentouuid"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747019772749": {
+			"nodeId": "node-1747019772749",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747015038891",
+				"node-1747080901994"
+			],
+			"name": "Union departamentos y municipios",
+			"generatedNodeName": "Uniondepartamentosymunicipios_node1747019772749",
+			"classification": "Transform",
+			"type": "Union",
+			"parentsValid": true,
+			"calculatedType": "",
+			"sources": [
+				"node-1747015038891",
+				"node-1747080901994"
+			],
+			"unionType": "ALL",
+			"codeGenVersion": 2
+		},
+		"node-1747072187368": {
+			"nodeId": "node-1747072187368",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747072053491"
+			],
+			"name": "Change Schema Indicadores",
+			"generatedNodeName": "ChangeSchemaIndicadores_node1747072187368",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "departamentouuid",
+					"fromPath": [
+						"departamentouuid"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "pcte_poblacion_rural",
+					"fromPath": [
+						"pcte_poblacion_rural"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": ".departamento",
+					"fromPath": [
+						".departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "educación_neta_total",
+					"fromPath": [
+						"educación_neta_total"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "proporcion_rural",
+					"fromPath": [
+						"proporcion_rural"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_salud",
+					"fromPath": [
+						"ipm_sin_salud"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_pobreza",
+					"fromPath": [
+						"ipm_pobreza"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".municipio",
+					"fromPath": [
+						".municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": ".codigo municipio",
+					"fromPath": [
+						".codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "float",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ingresos_totales",
+					"fromPath": [
+						"ingresos totales"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "nivel_sisben",
+					"fromPath": [
+						"nivel_sisben"
+					],
+					"toType": "double",
+					"fromType": "int",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_acceso_salud",
+					"fromPath": [
+						"ipm_sin_acceso_salud"
+					],
+					"toType": "double",
+					"fromType": "double",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "anio",
+					"fromPath": [
+						"anio"
+					],
+					"toType": "int",
+					"fromType": "int",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "aniouuid",
+					"fromPath": [
+						"aniouuid"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747073424483": {
+			"nodeId": "node-1747073424483",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013797163"
+			],
+			"name": "Vacunacion Municipal",
+			"generatedNodeName": "VacunacionMunicipal_node1747073424483",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "ano",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "float",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "double",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747074504495": {
+			"nodeId": "node-1747074504495",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747074412471",
+				"node-1747017444093"
+			],
+			"name": "Join Año y vacunacion",
+			"generatedNodeName": "JoinAoyvacunacion_node1747074504495",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "equijoin",
+			"columns": [
+				{
+					"from": "node-1747074412471",
+					"keys": [
+						"ano"
+					]
+				},
+				{
+					"from": "node-1747017444093",
+					"keys": [
+						"anio"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747071928049": {
+			"nodeId": "node-1747071928049",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747021498097",
+				"node-1747019960175"
+			],
+			"name": "Join Indicadores y Departamentos",
+			"generatedNodeName": "JoinIndicadoresyDepartamentos_node1747071928049",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "equijoin",
+			"columns": [
+				{
+					"from": "node-1747021498097",
+					"keys": [
+						"departamento"
+					]
+				},
+				{
+					"from": "node-1747019960175",
+					"keys": [
+						"departamento"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747015846927": {
+			"nodeId": "node-1747015846927",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747014667693",
+				"node-1747014710230"
+			],
+			"name": "Union Años",
+			"generatedNodeName": "UnionAos_node1747015846927",
+			"classification": "Transform",
+			"type": "Union",
+			"parentsValid": true,
+			"calculatedType": "",
+			"sources": [
+				"node-1747014667693",
+				"node-1747014710230"
+			],
+			"unionType": "ALL",
+			"codeGenVersion": 2
+		},
+		"node-1747080901994": {
+			"nodeId": "node-1747080901994",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747073759905"
+			],
+			"name": "Departamento Change Schema",
+			"generatedNodeName": "DepartamentoChangeSchema_node1747080901994",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "double",
+					"fromType": "float",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747017444093": {
+			"nodeId": "node-1747017444093",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747015884728"
+			],
+			"name": "AñoUUID",
+			"generatedNodeName": "AoUUID_node1747017444093",
+			"classification": "Transform",
+			"type": "DynamicTransform",
+			"parameters": [
+				{
+					"name": "colName",
+					"value": [
+						"aniouuid"
+					],
+					"isOptional": true,
+					"type": "str",
+					"listType": null
+				}
+			],
+			"functionName": "gs_uuid",
+			"path": "s3://aws-glue-studio-transforms-510798373988-prod-us-east-1/gs_uuid.py",
+			"version": "1.0.0",
+			"transformName": "gs_uuid",
+			"outputSchemas": [
+				[
+					{
+						"key": "anio",
+						"fullPath": [
+							"anio"
+						],
+						"type": "int",
+						"glueStudioType": null,
+						"children": null
+					},
+					{
+						"key": "aniouuid",
+						"fullPath": [
+							"aniouuid"
+						],
+						"type": "string",
+						"glueStudioType": null,
+						"children": null
+					}
+				]
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747073759905": {
+			"nodeId": "node-1747073759905",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747017687038",
+				"node-1747017734870"
+			],
+			"name": "Join departamentos",
+			"generatedNodeName": "Joindepartamentos_node1747073759905",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "outer",
+			"columns": [
+				{
+					"from": "node-1747017687038",
+					"keys": [
+						"departamento"
+					]
+				},
+				{
+					"from": "node-1747017734870",
+					"keys": [
+						"departamento"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747075315582": {
+			"nodeId": "node-1747075315582",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747074585299"
+			],
+			"name": "Amazon Redshift Vacunacion",
+			"generatedNodeName": "AmazonRedshiftVacunacion_node1747075315582",
+			"classification": "DataSink",
+			"type": "AmazonRedshift",
+			"streamingBatchInterval": 100,
+			"data": {
+				"accessType": "connection",
+				"sourceType": "table",
+				"connection": {
+					"value": "Redshift connection",
+					"label": "Redshift connection",
+					"description": "No description available. Version: 2"
+				},
+				"schema": {
+					"value": "public",
+					"label": "public",
+					"description": null
+				},
+				"catalogDatabase": null,
+				"catalogRedshiftTable": null,
+				"catalogRedshiftSchema": null,
+				"table": {
+					"value": "hecho_jornada_vacunacion",
+					"label": "hecho_jornada_vacunacion",
+					"description": null
+				},
+				"catalogTable": null,
+				"tempDir": "s3://aws-glue-assets-730335590590-us-east-1/temporary/",
+				"iamRole": null,
+				"sampleQuery": null,
+				"preAction": null,
+				"postAction": null,
+				"action": "drop",
+				"tableSchema": [
+					{
+						"value": "meta",
+						"label": "meta",
+						"description": "REAL"
+					},
+					{
+						"value": "dosis_aplicadas",
+						"label": "dosis_aplicadas",
+						"description": "REAL"
+					},
+					{
+						"value": "cobertura",
+						"label": "cobertura",
+						"description": "DOUBLE PRECISION"
+					},
+					{
+						"value": "aniouuid",
+						"label": "aniouuid",
+						"description": "VARCHAR"
+					},
+					{
+						"value": "departamentouuid",
+						"label": "departamentouuid",
+						"description": "VARCHAR"
+					}
+				],
+				"selectedColumns": [],
+				"crawlerConnection": null,
+				"tablePrefix": null,
+				"upsert": false,
+				"mergeAction": "simple",
+				"mergeWhenMatched": "update",
+				"mergeWhenNotMatched": "insert",
+				"mergeClause": null,
+				"stagingTable": "public.hecho_jornada_vacunacion_temp_kt72d6",
+				"advancedOptions": []
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747014667693": {
+			"nodeId": "node-1747014667693",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013522012"
+			],
+			"name": "Años",
+			"generatedNodeName": "Aos_node1747014667693",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "anio",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ipm_pobreza",
+					"fromPath": [
+						"ipm_pobreza"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_salud",
+					"fromPath": [
+						"ipm_sin_salud"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ipm_sin_acceso_salud",
+					"fromPath": [
+						"ipm_sin_acceso_salud"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "nivel_sisben",
+					"fromPath": [
+						"nivel_sisben"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "proporcion_rural",
+					"fromPath": [
+						"proporcion_rural"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "educación_neta_total",
+					"fromPath": [
+						"educación_neta_total"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "ingresos totales",
+					"fromPath": [
+						"ingresos totales"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "pcte_poblacion_rural",
+					"fromPath": [
+						"pcte_poblacion_rural"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1747014729969": {
+			"nodeId": "node-1747014729969",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1747013797163"
+			],
+			"name": "Años",
+			"generatedNodeName": "Aos_node1747014729969",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "anio",
+					"fromPath": [
+						"ano"
+					],
+					"toType": "int",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "departamento",
+					"fromPath": [
+						"departamento"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "codigo municipio",
+					"fromPath": [
+						"codigo municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "municipio",
+					"fromPath": [
+						"municipio"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "meta",
+					"fromPath": [
+						"meta"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "dosis aplicadas",
+					"fromPath": [
+						"dosis aplicadas"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				},
+				{
+					"toKey": "cobertura",
+					"fromPath": [
+						"cobertura"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": true,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}
